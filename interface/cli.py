@@ -4,6 +4,14 @@ from engine.generator import random_numbers, random_challenge, decode_challenge
 from engine.evaluator import Addition, Subtraction, Multiplication, Division
 from datetime import datetime
 
+def get_user_answer():
+    user_ans = input("Answer: ").strip()
+
+    if user_ans == "":
+        user_ans = 0
+
+    return int(user_ans)
+
 def get_time(start_time):
     end_time = datetime.now()
     duration = end_time - start_time
@@ -26,7 +34,8 @@ def addition_functions():
    
         print(f"\n{a} + {b}")
 
-        user_ans = int(input("Answer: "))
+        user_ans = get_user_answer()
+
         addition = Addition(a, b)
         check = addition.check_answer(user_ans)
         if check == True:
@@ -54,7 +63,8 @@ def subtraction_functions():
 
         print(f"\n{difference} - {a}")
 
-        user_ans = int(input("Answer: "))
+        user_ans = get_user_answer()
+
         check = subtraction.check_ans(user_ans)
         if check == True:
             print("Correct!!")
@@ -76,10 +86,11 @@ def multiplication_functions():
         a = numbers[0]
         b = numbers[1]
         print(f"\n{a} x {b}")
-        user_answer = int(input("Answer: "))
+
+        user_ans = get_user_answer()
 
         multiplication = Multiplication(a, b)
-        check = multiplication.check_ans(user_answer)
+        check = multiplication.check_ans(user_ans)
         if check == True:
             print("Correct!!")
             corrects += 1
@@ -105,8 +116,8 @@ def division_functions():
         divident = division.return_divident()
 
         print(f"\n{divident} / {a}")
-        user_answer = int(input("Answer: "))
-        check = division.check_ans(user_answer)
+        user_ans = get_user_answer()
+        check = division.check_ans(user_ans)
 
         if check == True:
             corrects += 1
@@ -134,7 +145,7 @@ def challenge_functions():
 
         if operation == "addition":
             print(f"\n{a} + {b}")
-            user_ans = int(input("Answer: "))
+            user_ans = get_user_answer()
             addition = Addition(a, b)
             check = addition.check_answer(user_ans)
 
@@ -149,7 +160,7 @@ def challenge_functions():
             difference = subtraction.return_answer()
 
             print(f"\n{difference} - {a}")
-            user_ans = int(input("Answer: "))
+            user_ans = get_user_answer()
 
             check = subtraction.check_ans(user_ans)
 
@@ -161,10 +172,10 @@ def challenge_functions():
 
         elif operation == "multiplication":
             print(f"\n{a} x {b}")
-            user_answer = int(input("Answer: "))
+            user_ans = get_user_answer()
 
             multiplication = Multiplication(a, b)
-            check = multiplication.check_ans(user_answer)
+            check = multiplication.check_ans(user_ans)
 
             if check == True:
                 print("Correct!!")
@@ -177,8 +188,8 @@ def challenge_functions():
             divident = division.return_divident()
 
             print(f"\n{divident} / {a}")
-            user_answer = int(input("Answer: "))
-            check = division.check_ans(user_answer)
+            user_ans = get_user_answer()
+            check = division.check_ans(user_ans)
 
             if check == True:
                 corrects += 1
