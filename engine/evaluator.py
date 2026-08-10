@@ -1,6 +1,6 @@
 """ Target calculation logic (ADD, SUB, MUL, DIV) """
 
-from engine.generator import random_number
+from engine.generator import random_numbers
 
 
 class Numbers():
@@ -14,11 +14,9 @@ class Numbers():
 class Addition(Numbers):
     def __init__(self, a, b, c, d, e):
         super().__init__(a, b, c, d, e)
+        self.answer = a + b + c + d + e
 
-    def sum(self):
-        self.answer = self.a + self.b + self.c + self.d + self.e
-
-    def check_answer(self, answer):
+    def check_answer(self,  answer):
         if answer == self.answer:
             return True
         else:

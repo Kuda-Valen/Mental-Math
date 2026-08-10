@@ -1,7 +1,9 @@
 from datetime import datetime
 
 from engine.evaluator import Addition
-from engine.generator import random_number
+from engine.generator import random_numbers
+from config import challenge
+
 
 if __name__ == "__main__":
 
@@ -18,8 +20,42 @@ if __name__ == "__main__":
             option = int(input("\nChoose an Option: "))
 
             if option == 1:
+                corrects = 0
+                i = 0
+
                 print("\n== ADDITION ==\n")
-                addition = Addition(random_number)
+                user_input = challenge()
+                while i < 10:
+                    numbers = random_numbers(user_input)
+                    a = numbers[0]
+                    b = numbers[1]
+                    c = numbers[2]
+                    d = numbers[3]
+                    e = numbers[4]
+                    if user_input == 1:
+                        print(f"\n{a} + {b}")
+
+                    elif user_input == 2:
+                        print(f"\n{a} + {b} + {c}")
+
+                    elif user_input == 3:
+                        print(f"\n{a} + {b} + {c} + {d}")
+                        
+                    elif user_input == 4:
+                        print(f"\n{a} + {b} + {c} + {d} + {e}")
+
+                    user_ans = int(input("Answer: "))
+                    addition = Addition(a, b, c, d, e)
+                    check = addition.check_answer(user_ans)
+                    if check == True:
+                        print("Correct!!")
+                        corrects += 1
+                    else:
+                        print("Incorrect!!")
+                    i += 1
+
+                print(f"\nYou Got {corrects} correct out of 10!")
+                
 
             elif option == 2:
                 print("Calling Subtraction method")
