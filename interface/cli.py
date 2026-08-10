@@ -1,7 +1,7 @@
 """ User input, Main Menu, & Time formatting """
 from config import challenge
-from engine.generator import random_numbers
-from engine.evaluator import Addition, Subtraction
+from engine.generator import random_numbers, random_challenge, decode_challenge
+from engine.evaluator import Addition, Subtraction, Multiplication, Division
 from datetime import datetime
 
 def get_time(start_time):
@@ -23,24 +23,11 @@ def addition_functions():
         numbers = random_numbers(user_input)
         a = numbers[0]
         b = numbers[1]
-        c = numbers[2]
-        d = numbers[3]
-        e = numbers[4]
-
-        if user_input == 1:
-            print(f"\n{a} + {b}")
-
-        elif user_input == 2:
-            print(f"\n{a} + {b} + {c}")
-
-        elif user_input == 3:
-            print(f"\n{a} + {b} + {c} + {d}")
-
-        elif user_input == 4:
-            print(f"\n{a} + {b} + {c} + {d} + {e}")
+   
+        print(f"\n{a} + {b}")
 
         user_ans = int(input("Answer: "))
-        addition = Addition(a, b, c, d, e)
+        addition = Addition(a, b)
         check = addition.check_answer(user_ans)
         if check == True:
             print("Correct!!")
@@ -48,6 +35,7 @@ def addition_functions():
         else:
             print("Incorrect!!")
         i += 1
+
     duration = get_time(start_time)
     print(f"\nYou got {corrects} correct out of 10..")
     print(f"Time: {duration}")
@@ -74,6 +62,132 @@ def subtraction_functions():
         else:
             print("Incorrect!!")
         i += 1
+    duration = get_time(start_time)
+    print(f"\nYou got {corrects} correct out of 10.")
+    print(f"Time: {duration}")
+
+def multiplication_functions():
+    corrects = 0
+    i = 0
+    user_input = challenge()
+    start_time = datetime.now()
+    while i < 10:
+        numbers = random_numbers(user_input)
+        a = numbers[0]
+        b = numbers[1]
+        print(f"\n{a} x {b}")
+        user_answer = int(input("Answer: "))
+
+        multiplication = Multiplication(a, b)
+        check = multiplication.check_ans(user_answer)
+        if check == True:
+            print("Correct!!")
+            corrects += 1
+        else:
+            print("Incorrect!!")
+        i += 1
+
+    duration = get_time(start_time)
+    print(f"\nYou got {corrects} correct out of 10.")
+    print(f"Time: {duration}")
+
+def division_functions():
+    corrects = 0
+    i = 0
+    user_input = challenge()
+    start_time = datetime.now()
+    while i < 10:
+        numbers = random_numbers(user_input)
+        a = numbers[0]
+        b = numbers[1]
+
+        division = Division(a, b)
+        divident = division.return_divident()
+
+        print(f"\n{divident} / {a}")
+        user_answer = int(input("Answer: "))
+        check = division.check_ans(user_answer)
+
+        if check == True:
+            corrects += 1
+            print("Correct!!")
+        else:
+            print("Incorrect!!")
+        i += 1
+
+    duration = get_time(start_time)
+    print(f"\nYou got {corrects} correct out of 10")
+    print(f"Time: {duration}")
+
+def challenge_functions():
+    operators = random_challenge()
+    corrects = 0
+    i = 0
+    user_input = challenge()
+    start_time = datetime.now()
+    while i < 10:
+        numbers = random_numbers(user_input)
+        a = numbers[0]
+        b = numbers[1]
+    
+        operation = decode_challenge(i, operators)
+
+        if operation == "addition":
+            print(f"\n{a} + {b}")
+            user_ans = int(input("Answer: "))
+            addition = Addition(a, b)
+            check = addition.check_answer(user_ans)
+
+            if check == True:
+                print("Correct!!")
+                corrects += 1
+            else:
+                print("Incorrect!!")
+
+        elif operation == "subtraction":
+            subtraction = Subtraction(a, b)
+            difference = subtraction.return_answer()
+
+            print(f"\n{difference} - {a}")
+            user_ans = int(input("Answer: "))
+
+            check = subtraction.check_ans(user_ans)
+
+            if check == True:
+                print("Correct!!")
+                corrects += 1
+            else:
+                print("Incorrect!!")
+
+        elif operation == "multiplication":
+            print(f"\n{a} x {b}")
+            user_answer = int(input("Answer: "))
+
+            multiplication = Multiplication(a, b)
+            check = multiplication.check_ans(user_answer)
+
+            if check == True:
+                print("Correct!!")
+                corrects += 1
+            else:
+                print("Incorrect!!")
+
+        else:
+            division = Division(a, b)
+            divident = division.return_divident()
+
+            print(f"\n{divident} / {a}")
+            user_answer = int(input("Answer: "))
+            check = division.check_ans(user_answer)
+
+            if check == True:
+                corrects += 1
+                print("Correct!!")
+            else:
+                print("Incorrect!!")
+
+        i += 1
+
     duration = get_time(start_time)
     print(f"\nYou got {corrects} correct out of 10.")
     print(f"Time: {duration}")

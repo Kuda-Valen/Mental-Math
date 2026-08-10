@@ -2,7 +2,6 @@
 
 import random
 
-
 def random_numbers(user_input):
     if user_input == 1:
         random_a = random.randint(1, 12)
@@ -33,3 +32,27 @@ def random_numbers(user_input):
         random_e = random.randint(121, 500)
 
     return [random_a, random_b, random_c, random_d, random_e]
+
+def random_challenge():
+    operations = []
+    i = 0
+
+    while i < 10:
+        num = random.randint(1, 4)
+        operations.append(num)
+        i += 1
+
+    return operations
+
+def decode_challenge(i, operators):
+    if operators[i] == 1:
+        return "addition"
+
+    elif operators[i] == 2:
+        return "subtraction"
+
+    elif operators[i] == 3:
+        return "multiplication"
+
+    elif operators[i] == 4:
+        return "division"

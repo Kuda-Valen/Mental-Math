@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from interface.cli import addition_functions, subtraction_functions
+from interface.cli import addition_functions, subtraction_functions, multiplication_functions, division_functions, challenge_functions
 
 
 if __name__ == "__main__":
@@ -27,13 +27,16 @@ if __name__ == "__main__":
                 subtraction_functions()
 
             elif option == 3:
-                print("Calling Multiplication method")
+                print("\n== Multiplication ==\n")
+                multiplication_functions()
 
             elif option == 4:
-                print("Calling Division method")
+                print("\n== Division ==\n")
+                division_functions()
 
             elif option == 5:
-                print("Calling Challenge method")
+                print("\n== Challenge ==\n")
+                challenge_functions()
 
             elif option == 6:
                 print("\n[SYSTEM]   Exiting!...")
