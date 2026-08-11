@@ -25,7 +25,12 @@ def get_time(start_time):
 def addition_functions():
     corrects = 0
     i = 0
-    user_input = challenge()
+    try:
+        user_input = challenge()
+    except ValueError as e:
+        print(f"\n[SYSTEM]  Encountered input error: {e}")
+        print("Choose correct Challenge...")
+        
     start_time = datetime.now()
     while i < 10:
         numbers = random_numbers(user_input)
@@ -37,7 +42,7 @@ def addition_functions():
         user_ans = get_user_answer()
 
         addition = Addition(a, b)
-        check = addition.check_answer(user_ans)
+        check = addition.check_ans(user_ans)
         if check == True:
             print("Correct!!")
             corrects += 1
@@ -147,7 +152,7 @@ def challenge_functions():
             print(f"\n{a} + {b}")
             user_ans = get_user_answer()
             addition = Addition(a, b)
-            check = addition.check_answer(user_ans)
+            check = addition.check_ans(user_ans)
 
             if check == True:
                 print("Correct!!")
@@ -202,3 +207,19 @@ def challenge_functions():
     duration = get_time(start_time)
     print(f"\nYou got {corrects} correct out of 10.")
     print(f"Time: {duration}")
+
+def operation(operation):
+    if operation == "addition":
+        addition_functions()
+
+    elif operation == "subtraction":
+        subtraction_functions()
+
+    elif operation == "multiplication":
+        multiplication_functions()
+
+    elif operation == "division":
+        division_functions()
+
+    else:
+        challenge_functions()

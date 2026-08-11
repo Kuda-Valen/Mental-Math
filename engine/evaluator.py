@@ -1,7 +1,5 @@
 """ Target calculation logic (ADD, SUB, MUL, DIV) """
 
-from engine.generator import random_numbers
-
 
 class Numbers():
     def __init__(self, a: int, b: int):
@@ -14,7 +12,7 @@ class Addition(Numbers):
         super().__init__(a, b)
         self.answer = a + b 
 
-    def check_answer(self,  answer):
+    def check_ans(self,  answer):
         if answer == self.answer:
             return True
         else:
