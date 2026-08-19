@@ -2,9 +2,7 @@ from datetime import datetime
 
 from interface.cli import operation
 
-
-if __name__ == "__main__":
-
+def main_user_menu():
     while True:
         print("\n === MENTAL MATH ===")
         print("1. Addition")

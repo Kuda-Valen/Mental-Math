@@ -1,6 +1,7 @@
 # Main app first page
 from authentication.login import login
 from authentication.signup import signup
+from user_main import main_user_menu
 
 
 if __name__ == "__main__":
@@ -18,6 +19,8 @@ if __name__ == "__main__":
             if user_input == 1:
                 print("\nLogin")
                 login()
+                main_user_menu()
+
 
             elif user_input == 2:
                 print("\nSignup")
